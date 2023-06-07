@@ -8,10 +8,9 @@ Product.belongsTo(Category)
 
 Category.hasMany(Product)
 
+Product.belongsToMany(Tag)
 
-// Products belongToMany Tags (through ProductTag)
-
-// Tags belongToMany Products (through ProductTag)
+Tag.belongsToMany(ProductTag)
 
 module.exports = {
   Product,
