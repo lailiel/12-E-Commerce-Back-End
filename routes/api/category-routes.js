@@ -4,7 +4,9 @@ const { Category, Product } = require('../../models');
 // The `/api/categories` endpoint
 
 router.get('/', (req, res) => {
-  Category.findAll().then((catData) =>{
+  Category.findAll({
+    include: [{ model: Product}]
+  }).then((catData) =>{
     res.json(catData)
   })
   // find all categories-----------
@@ -15,10 +17,8 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
    // find one category by its `id` value-------
   // be sure to include its associated Products
- Category.findAll(req.body, {
-  where: {
-    id: req.params.id,
-  }
+ Category.findByPk(req.params.id, {
+ include: [{ model: Product }]
  }).then((catData) => {
   res.json(catData);
  })
