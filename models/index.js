@@ -10,7 +10,7 @@ Category.hasMany(Product)
 
 Product.belongsToMany(Tag)
 
-Tag.belongsToMany(ProductTag)
+Tag.belongsToMany(Product)
 
 module.exports = {
   Product,

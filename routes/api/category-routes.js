@@ -10,13 +10,13 @@ router.get('/', (req, res) => {
     res.json(catData)
   })
   // find all categories-----------
-  // be sure to include its associated Products
+  // be sure to include its associated Products-----
  
 });
 
 router.get('/:id', (req, res) => {
    // find one category by its `id` value-------
-  // be sure to include its associated Products
+  // be sure to include its associated Products-----
  Category.findByPk(req.params.id, {
  include: [{ model: Product }]
  }).then((catData) => {
