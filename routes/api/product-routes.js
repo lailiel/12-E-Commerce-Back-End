@@ -38,10 +38,10 @@ router.post("/", (req, res) => {
     }
   */
   Product.create({
-    product_name: "Basketball",
-    price: 200.0,
-    stock: 3,
-    tagIds: [1, 2, 3, 4],
+    product_name: req.body.product_name,
+    price: req.body.price,
+    stock: req.body.stock,
+    tagIds: req.body.tagIds
   })
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -116,6 +116,9 @@ router.delete("/:id", (req, res) => {
     },
   })
     .then((delPro) => {
+      if (!delPro) {
+        res.status(404).json({message: 'No Product with this ID'})
+      }
       res.json(delPro);
     })
     .catch((err) => {

@@ -43,6 +43,10 @@ router.put("/:id", (req, res) => {
     },
   })
     .then((updateID) => {
+      if(!updateID) {
+        res.status(404).json({message: 'No Tag with this ID'})
+        return;
+      }
       res.json(updateID);
     })
     .catch((err) => {
@@ -58,6 +62,9 @@ router.delete("/:id", (req, res) => {
     },
   })
     .then((delTag) => {
+      if (!delTag) {
+        res.status(404).json({message: 'No Tag with this ID'})
+      }
       res.json(delTag);
     })
     .catch((err) => {

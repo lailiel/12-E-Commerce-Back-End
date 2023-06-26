@@ -39,13 +39,17 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
    // update a category by its `id` value------
-  Category.create(req.body, {
+  Category.update(req.body, {
     where: {
       id: req.params.id,
     }
   })
-  .then((newCat) => {
-    res.json(newCat);
+  .then((category) => {
+    if (!category) {
+      res.status(404).json({message: 'No Category with this ID'})
+      return;
+    }
+    res.json(category);
   })
   .catch((err) => {
     res.json(err)
@@ -61,6 +65,10 @@ router.delete('/:id', (req, res) => {
     }
   })
   .then((delCat) => {
+    if (!category) {
+      res.status(404).json({message: 'No Category with this ID'})
+      return;
+    }
     res.json(delCat);
   })
   .catch((err) => {
