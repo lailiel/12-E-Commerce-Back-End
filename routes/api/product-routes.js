@@ -16,10 +16,9 @@ router.get("/", (req, res) => {
 
 // get one product
 router.get("/:id", (req, res) => {
-  Product.findAll(req.body, {
-    where: {
-      id: req.params.id,
-    },
+  Product.findByPk(req.params.id, {
+    // where: {
+    // id: req.params.id},
     include: [{ model: Category }, { model: Tag }],
   }).then((proData) => {
     res.json(proData);
