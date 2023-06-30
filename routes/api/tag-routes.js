@@ -42,12 +42,12 @@ router.put("/:id", (req, res) => {
       id: req.params.id,
     },
   })
-    .then((updateID) => {
-      if(!updateID) {
+    .then((upTag) => {
+      if(!upTag) {
         res.status(404).json({message: 'No Tag with this ID'})
         return;
       }
-      res.json(updateID);
+      res.json(upTag);
     })
     .catch((err) => {
       res.json(err);
@@ -56,7 +56,7 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  Tag.destroy(req.body, {
+  Tag.destroy({
     where: {
       id: req.params.id,
     },
@@ -65,12 +65,12 @@ router.delete("/:id", (req, res) => {
       if (!delTag) {
         res.status(404).json({message: 'No Tag with this ID'})
       }
-      res.json(delTag);
+      res.status(200).json(delTag);
     })
     .catch((err) => {
       res.json(err);
     });
-  // delete on tag by its `id` value-----
+  // delete tag by its `id` value-----
 });
 
 module.exports = router;

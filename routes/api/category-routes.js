@@ -44,8 +44,8 @@ router.put('/:id', (req, res) => {
       id: req.params.id,
     }
   })
-  .then((category) => {
-    if (!category) {
+  .then((upCat) => {
+    if (!upCat) {
       res.status(404).json({message: 'No Category with this ID'})
       return;
     }
@@ -59,13 +59,13 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value-------
-  Category.destroy(req.body, {
+  Category.destroy({
     where: {
       id: req.params.id,
     }
   })
   .then((delCat) => {
-    if (!category) {
+    if (!delcat) {
       res.status(404).json({message: 'No Category with this ID'})
       return;
     }
